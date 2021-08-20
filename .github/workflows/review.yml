@@ -1,0 +1,13 @@
+name: review
+
+on:
+  workflow_run:
+    workflows: ["test-pr"]
+    types:
+      - completed
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
