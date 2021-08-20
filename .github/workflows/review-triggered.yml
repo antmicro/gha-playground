@@ -6,6 +6,12 @@ on:
     types:
       - completed
 
+# on:
+#   workflow_run:
+#     workflows: ["test-pr"]
+#     types:
+#       - completed
+
 jobs:
   review_triggered:
     runs-on: ubuntu-latest
