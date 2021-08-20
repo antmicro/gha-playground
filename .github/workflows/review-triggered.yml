@@ -2,7 +2,7 @@ name: review-triggered
 
 on:
   workflow_run:
-    workflows: ['test-pr']
+    workflows: ["test-pr"]
     types:
       - completed
 
