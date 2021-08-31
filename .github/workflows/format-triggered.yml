@@ -34,8 +34,6 @@ jobs:
             fs.writeFileSync('${{github.workspace}}/event.json.zip', Buffer.from(download.data));
       - run: |
           unzip event.json.zip
-      - uses: antmicro/verible-formatter-action@main
+      - uses: antmicro/verible-linter-action@autofix
         with:
-          paths: |
-            ./rtl/*.sv
           github_token: ${{ secrets.GITHUB_TOKEN }}
