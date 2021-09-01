@@ -17,7 +17,6 @@ class pwm_env_cfg extends cip_base_env_cfg #(.RAL_T(pwm_reg_block));
   uint ok_to_end_delay_ns = 3000;    // drained time of phase_ready_to_end
   int num_pulses;                    // number of generated pulse
   int core_clk_freq_mhz;             // core clock freq
-  
   // ratio between bus_clk and core_clk (must be >= 1)
   rand int clk_ratio;
   constraint clk_ratio_c { clk_ratio inside {[1: 4]}; }
