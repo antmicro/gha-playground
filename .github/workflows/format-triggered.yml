@@ -37,3 +37,8 @@ jobs:
       - uses: antmicro/verible-linter-action@autofix
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload log file as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: verible-verilog-lint.log
+          path: verible-verilog-lint.log
