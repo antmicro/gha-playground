@@ -87,5 +87,5 @@ class pwm_env_cfg extends cip_base_env_cfg #(.RAL_T(pwm_reg_block));
       print_channel_cfg(msg, regs, channel, en_print);
     end
   endfunction : print_all_channel_cfg
-  
+
 endclass : pwm_env_cfg
