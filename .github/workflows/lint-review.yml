@@ -39,3 +39,4 @@ jobs:
           paths:
             ./tests
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          suggest_fixes: 'false'
