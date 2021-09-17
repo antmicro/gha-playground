@@ -133,6 +133,7 @@ module core_ibex_tb_top;
   assign instr_mem_vif.be                     = 0;
   assign instr_mem_vif.wdata                  = 0;
   // RVFI interface connections
+  assign rvfi_if.reset                        = ~rst_n;
   assign rvfi_if.valid                        = dut.rvfi_valid;
   assign rvfi_if.order                        = dut.rvfi_order;
   assign rvfi_if.insn                         = dut.rvfi_insn;
@@ -152,6 +153,10 @@ module core_ibex_tb_top;
   assign rvfi_if.mem_rmask                    = dut.rvfi_mem_rmask;
   assign rvfi_if.mem_rdata                    = dut.rvfi_mem_rdata;
   assign rvfi_if.mem_wdata                    = dut.rvfi_mem_wdata;
+  assign rvfi_if.ext_mip                      = dut.rvfi_ext_mip;
+  assign rvfi_if.ext_nmi                      = dut.rvfi_ext_nmi;
+  assign rvfi_if.ext_debug_req                = dut.rvfi_ext_debug_req;
+  assign rvfi_if.ext_mcycle                   = dut.rvfi_ext_mcycle;
   // Irq interface connections
   assign irq_vif.reset                        = ~rst_n;
   // Dut_if interface connections
@@ -164,7 +169,9 @@ module core_ibex_tb_top;
   assign dut_if.reset                         = ~rst_n;
   assign dut_if.priv_mode                     = dut.u_ibex_top.u_ibex_core.priv_mode_id;
   // Instruction monitor connections
+  assign instr_monitor_if.reset               = ~rst_n;
   assign instr_monitor_if.valid_id            = dut.u_ibex_top.u_ibex_core.id_stage_i.instr_valid_i;
+  assign instr_monitor_if.instr_new_id        = dut.u_ibex_top.u_ibex_core.instr_new_id;
   assign instr_monitor_if.err_id              = dut.u_ibex_top.u_ibex_core.id_stage_i.controller_i.instr_fetch_err;
   assign instr_monitor_if.is_compressed_id    = dut.u_ibex_top.u_ibex_core.id_stage_i.instr_is_compressed_i;
   assign instr_monitor_if.instr_compressed_id = dut.u_ibex_top.u_ibex_core.id_stage_i.instr_rdata_c_i;
@@ -174,12 +181,20 @@ module core_ibex_tb_top;
   assign instr_monitor_if.branch_target_id    = dut.u_ibex_top.u_ibex_core.branch_target_ex;
   assign instr_monitor_if.stall_id            = dut.u_ibex_top.u_ibex_core.id_stage_i.stall_id;
   assign instr_monitor_if.jump_set_id         = dut.u_ibex_top.u_ibex_core.id_stage_i.jump_set;
+  assign instr_monitor_if.rvfi_order_id       = dut.u_ibex_top.u_ibex_core.rvfi_stage_order_d;
   // CSR interface connections
   assign csr_if.csr_access                    = dut.u_ibex_top.u_ibex_core.csr_access;
   assign csr_if.csr_addr                      = dut.u_ibex_top.u_ibex_core.csr_addr;
   assign csr_if.csr_wdata                     = dut.u_ibex_top.u_ibex_core.csr_wdata;
   assign csr_if.csr_rdata                     = dut.u_ibex_top.u_ibex_core.csr_rdata;
   assign csr_if.csr_op                        = dut.u_ibex_top.u_ibex_core.csr_op;
+
+  assign data_mem_vif.misaligned_first =
+    dut.u_ibex_top.u_ibex_core.load_store_unit_i.handle_misaligned_d |
+    ((dut.u_ibex_top.u_ibex_core.load_store_unit_i.lsu_type_i == 2'b01) &
+     (dut.u_ibex_top.u_ibex_core.load_store_unit_i.data_offset == 2'b01));
+
+  assign data_mem_vif.misaligned_second = dut.u_ibex_top.u_ibex_core.load_store_unit_i.addr_incr_req_o;
 
   initial begin
     // Drive the clock and reset lines. Reset everything and start the clock at the beginning of
