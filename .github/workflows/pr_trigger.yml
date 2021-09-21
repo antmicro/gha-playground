@@ -26,6 +26,6 @@ jobs:
       - run: |
           echo "git HEAD is:"
           git rev-parse FETCH_HEAD
-          git log -1 FETCH_HEAD
+          git log -3 FETCH_HEAD
           echo "current log is:"
-          git log -1
+          git log -3
