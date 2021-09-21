@@ -24,5 +24,6 @@ jobs:
           name: event.json
           path: event.json
       - run: |
-        echo "git HEAD is:"
-        git rev-parse FETCH_HEAD
+          echo "git HEAD is:"
+          git rev-parse FETCH_HEAD
+
