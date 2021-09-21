@@ -26,4 +26,5 @@ jobs:
       - run: |
           echo "git HEAD is:"
           git rev-parse FETCH_HEAD
+          git log -1
 
