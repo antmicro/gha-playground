@@ -13,6 +13,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: Copy event file
         run: cp "$GITHUB_EVENT_PATH" ./event.json
+      - run: |
+          echo "git HEAD is:"
+          git rev-parse FETCH_HEAD
+          git log -3 FETCH_HEAD
+          echo "current log is:"
+          git log -3
+          git diff FETCH_HEAD > diff
 
       # If this workflow is triggered by a PR from a fork
       # it won't have sufficient access rights to make a review
@@ -22,10 +29,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: event.json
-          path: event.json
-      - run: |
-          echo "git HEAD is:"
-          git rev-parse FETCH_HEAD
-          git log -3 FETCH_HEAD
-          echo "current log is:"
-          git log -3
+          path: |
+            event.json
+            diff
