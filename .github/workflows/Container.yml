@@ -16,7 +16,7 @@ jobs:
     steps:
 
     - name: set image name
-      run: echo "IMAGE=ghcr.io/chipsalliance/verible-linter-action:${GITHUB_REF##*/}"
+      run: echo "IMAGE=ghcr.io/chipsalliance/verible-linter-action:${GITHUB_REF##*/}" >> $GITHUB_ENV
 
     - uses: actions/checkout@v2
 
