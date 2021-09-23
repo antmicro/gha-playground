@@ -13,9 +13,10 @@ jobs:
 
   container:
     runs-on: ubuntu-latest
-    env:
-      IMAGE: ghcr.io/chipsalliance/verible-linter-action:${GITHUB_REF##*/}
     steps:
+
+    - name: set image name
+      run: echo "IMAGE=ghcr.io/chipsalliance/verible-linter-action:${GITHUB_REF##*/}"
 
     - uses: actions/checkout@v2
 
