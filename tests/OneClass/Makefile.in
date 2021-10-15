@@ -1,2 +1,0 @@
-TOP_FILE := $(root_dir)/tests/OneClass/top.sv
-TOP_MODULE := top

@@ -1,3 +1,0 @@
-TOP_FILE := $(TEST_DIR)/top.sv
-TOP_MODULE := top
-VERILATOR_FLAGS := $(TEST_DIR)/task.cpp

@@ -34,9 +34,9 @@ jobs:
       - run: |
           unzip event.json.zip
       - name: Run Verible action
-        uses: chipsalliance/verible-linter-action@v1.2
+        uses: antmicro/verible-linter-action@wsip/verible_rdformat
         with:
           paths:
             ./tests
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          suggest_fixes: 'false'
+          suggest_fixes: 'true'

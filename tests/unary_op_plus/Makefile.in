@@ -1,2 +1,0 @@
-TOP_FILE := $(TEST_DIR)/unary_op_plus.sv
-TOP_MODULE := top

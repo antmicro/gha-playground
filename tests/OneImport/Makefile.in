@@ -1,2 +1,0 @@
-TOP_FILE := $(TEST_DIR)/pkg.sv $(TEST_DIR)/dut.sv
-TOP_MODULE := dut
