@@ -38,5 +38,10 @@ jobs:
         with:
           paths:
             ./tests
+          log_file: log.json
           github_token: ${{ secrets.GITHUB_TOKEN }}
           suggest_fixes: 'true'
+      - uses: actions/upload-artifact@v2
+        with:
+          name: log.json
+          path: log.json
