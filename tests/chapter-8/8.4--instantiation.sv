@@ -12,9 +12,9 @@
 :description: simple class instantiation test
 :tags: 8.4
 */
-module class_tb ();
+module class_tb ();             
 	class test_cls;
-		int a;
+		int A;
 	endclass
 
 	test_cls test_obj;
