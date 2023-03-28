@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: antmicro/verible-formatter-action@error-presentation
+    - uses: antmicro/verible-formatter-action@mczyz/error-presentation
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         fail_on_formatting_suggestions: ${{ github.event_name != 'pull_request' }}
