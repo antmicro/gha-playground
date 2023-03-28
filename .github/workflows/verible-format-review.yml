@@ -1,0 +1,20 @@
+name: verible-format-review
+on:
+  pull_request_target:
+
+jobs:
+  verible-format-review:
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: chipsalliance/verible-formatter-action/trigger-send@main
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Run Verible action
+        uses: chipsalliance/verible-formatter-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
