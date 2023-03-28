@@ -1,9 +1,8 @@
 name: verible-push
 
 on:
-  push:
-    branches:
-      - 'main'
+  [push]
+
 
 jobs:
   verible-format:
