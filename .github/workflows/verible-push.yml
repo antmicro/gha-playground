@@ -3,7 +3,7 @@ name: verible-push
 on:
   [push]
 
-#cc
+#c
 
 jobs:
   verible-format:
